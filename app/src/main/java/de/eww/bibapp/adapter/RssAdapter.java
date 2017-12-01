@@ -10,7 +10,7 @@ import android.widget.TextView;
 import java.util.List;
 
 import de.eww.bibapp.R;
-import de.eww.bibapp.model.RssItem;
+import me.toptas.rssconverter.RssItem;
 
 /**
  * Created by christoph on 24.10.14.

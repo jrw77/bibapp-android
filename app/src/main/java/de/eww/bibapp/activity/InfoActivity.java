@@ -10,11 +10,6 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.octo.android.robospice.SpiceManager;
-import com.octo.android.robospice.XmlSpringAndroidSpiceService;
-import com.octo.android.robospice.persistence.exception.SpiceException;
-import com.octo.android.robospice.request.listener.RequestListener;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -22,15 +17,16 @@ import de.eww.bibapp.R;
 import de.eww.bibapp.adapter.RssAdapter;
 import de.eww.bibapp.constants.Constants;
 import de.eww.bibapp.decoration.DividerItemDecoration;
-import de.eww.bibapp.model.RssFeed;
-import de.eww.bibapp.model.RssItem;
-import de.eww.bibapp.request.RssFeedRequest;
+import de.eww.bibapp.network.RssService;
+import me.toptas.rssconverter.RssConverterFactory;
+import me.toptas.rssconverter.RssFeed;
+import me.toptas.rssconverter.RssItem;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
 
-public class InfoActivity extends BaseActivity {
-
-    private SpiceManager mSpiceManager = new SpiceManager(XmlSpringAndroidSpiceService.class);
-
-    private RssFeedRequest mRssFeedRequest;
+public class InfoActivity extends BaseActivity implements Callback<RssFeed> {
 
     RecyclerView mRecyclerView;
     ProgressBar mProgressBar;
@@ -39,19 +35,7 @@ public class InfoActivity extends BaseActivity {
     private RecyclerView.Adapter mAdapter;
     private RecyclerView.LayoutManager mLayoutManager;
 
-    private List<RssItem> mItemList = new ArrayList<RssItem>();
-
-    @Override
-    public void onStart() {
-        super.onStart();
-        mSpiceManager.start(this);
-    }
-
-    @Override
-    public void onStop() {
-        mSpiceManager.shouldStop();
-        super.onStop();
-    }
+    private List<RssItem> mItemList = new ArrayList<>();
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -72,10 +56,17 @@ public class InfoActivity extends BaseActivity {
         // Do we have a rss feed to display?
         if (!Constants.NEWS_URL.isEmpty()) {
             // Start the Request
-            mRssFeedRequest = new RssFeedRequest(this);
+            Retrofit retrofit = new Retrofit.Builder()
+                    .baseUrl(Constants.NEWS_URL)
+                    .addConverterFactory(RssConverterFactory.create())
+                    .build();
+
+            RssService service = retrofit.create(RssService.class);
+            service.getRss(Constants.NEWS_URL)
+                    .enqueue(this);
+
             mEmptyView.setVisibility(View.GONE);
             mProgressBar.setVisibility(View.VISIBLE);
-            mSpiceManager.execute(mRssFeedRequest, new RssRequestListener());
         } else {
             mEmptyView.setVisibility(View.GONE);
             mProgressBar.setVisibility(View.GONE);
@@ -105,6 +96,28 @@ public class InfoActivity extends BaseActivity {
         });
     }
 
+    @Override
+    public void onResponse(Call<RssFeed> call, Response<RssFeed> response) {
+        mItemList.addAll(response.body().getItems());
+
+        mProgressBar.setVisibility(View.GONE);
+        if (response.body().getItems().isEmpty()) {
+            mEmptyView.setVisibility(View.VISIBLE);
+        }
+
+        mAdapter = new RssAdapter(mItemList);
+        mRecyclerView.setAdapter(mAdapter);
+    }
+
+    @Override
+    public void onFailure(Call<RssFeed> call, Throwable t) {
+        Toast toast = Toast.makeText(InfoActivity.this, R.string.toast_info_rss_error, Toast.LENGTH_LONG);
+        toast.show();
+
+        mProgressBar.setVisibility(View.GONE);
+        mEmptyView.setVisibility(View.VISIBLE);
+    }
+
     private void onClickContactButton() {
         Intent contactIntent = new Intent(this, ContactActivity.class);
         startActivityForResult(contactIntent, 99);
@@ -118,30 +131,6 @@ public class InfoActivity extends BaseActivity {
     private void onClickImpressumButton() {
         Intent impressumIntent = new Intent(this, ImpressumActivity.class);
         startActivityForResult(impressumIntent, 99);
-    }
-
-    public final class RssRequestListener implements RequestListener<RssFeed> {
-        @Override
-        public void onRequestFailure(SpiceException spiceException) {
-            Toast toast = Toast.makeText(InfoActivity.this, R.string.toast_info_rss_error, Toast.LENGTH_LONG);
-            toast.show();
-
-            mProgressBar.setVisibility(View.GONE);
-            mEmptyView.setVisibility(View.VISIBLE);
-        }
-
-        @Override
-        public void onRequestSuccess(final RssFeed result) {
-            mItemList.addAll(result.getItems());
-
-            mProgressBar.setVisibility(View.GONE);
-            if (result.getItems().isEmpty()) {
-                mEmptyView.setVisibility(View.VISIBLE);
-            }
-
-            mAdapter = new RssAdapter(mItemList);
-            mRecyclerView.setAdapter(mAdapter);
-        }
     }
 
     @Override

@@ -2,8 +2,8 @@ apply plugin: 'com.android.application'
 apply plugin: 'me.tatarka.retrolambda'
 
 android {
-    compileSdkVersion 25
-    buildToolsVersion "25.0.2"
+    compileSdkVersion 27
+    buildToolsVersion "26.0.2"
 
     defaultConfig {
         minSdkVersion 14
@@ -33,57 +33,76 @@ android {
         exclude 'META-INF/notice.txt'
     }
 
+    flavorDimensions "main"
+
     productFlavors {
         hi {
             applicationId "de.eww.bibapp.hi"
+            dimension "main"
         }
         lg {
             applicationId "de.eww.bibapp.lg"
+            dimension "main"
         }
         il {
             applicationId "de.eww.bibapp.il"
+            dimension "main"
         }
         bls {
             applicationId "de.eww.bibapp.bls"
+            dimension "main"
         }
         hawk {
             applicationId "de.eww.bibapp.hawk"
+            dimension "main"
         }
         thulb {
             applicationId "de.eww.bibapp.thulb"
+            dimension "main"
         }
         eahjena {
             applicationId "de.eww.bibapp.eahjena"
+            dimension "main"
         }
         bathueringen {
             applicationId "de.eww.bibapp.bathueringen"
+            dimension "main"
         }
         schmalkalden {
             applicationId "de.eww.bibapp.schmalkalden"
+            dimension "main"
         }
         ubweimar {
             applicationId "de.eww.bibapp.ubweimar"
+            dimension "main"
         }
         hfmweimar {
             applicationId "de.eww.bibapp.hfmweimar"
+            dimension "main"
         }
         ndh {
             applicationId "de.eww.bibapp.ndh"
+            dimension "main"
         }
         fhe {
             applicationId "de.eww.bibapp.fhe"
+            dimension "main"
         }
         ufb {
             applicationId "de.eww.bibapp.ufb"
+            dimension "main"
         }
         tubs {
             applicationId 'de.eww.bibapp.tubs'
+            dimension "main"
         }
         aezb {
             applicationId 'de.eww.bibapp.aezb'
+            dimension "main"
         }
         commerz {
             applicationId 'de.eww.bibapp.commerz'
+            dimension "main"
         }
     }
 }
@@ -92,10 +111,10 @@ dependencies {
     compile fileTree(include: ['*.jar'], dir: 'libs')
 
     // Compat / Support
-    compile 'com.android.support:appcompat-v7:25.3.1'
-    compile 'com.android.support:recyclerview-v7:25.3.1'
-    compile 'com.android.support:design:25.3.1'
-    compile 'com.android.support:multidex:1.0.1'
+    compile 'com.android.support:appcompat-v7:27.0.2'
+    compile 'com.android.support:recyclerview-v7:27.0.2'
+    compile 'com.android.support:design:27.0.2'
+    compile 'com.android.support:multidex:1.0.2'
 
     // Retrofit
     ////compile 'com.google.code.gson:gson:2.6.2'
@@ -108,26 +127,22 @@ dependencies {
     //compile 'io.reactivex:rxjava:1.1.9'
 
     // Google Play services
-    compile 'com.google.android.gms:play-services-maps:10.2.1'
-    compile 'com.google.android.gms:play-services-location:10.2.1'
-    compile 'com.google.maps.android:android-maps-utils:0.4.4'
+    compile 'com.google.android.gms:play-services-maps:11.6.2'
+    compile 'com.google.android.gms:play-services-location:11.6.2'
+    compile 'com.google.maps.android:android-maps-utils:0.5'
 
     // Butterknife
     compile 'com.jakewharton:butterknife:8.8.1'
     annotationProcessor 'com.jakewharton:butterknife-compiler:8.8.1'
 
-    // Other
-    compile 'com.octo.android.robospice:robospice:1.4.14'
-    compile 'com.octo.android.robospice:robospice-spring-android:1.4.14'
-    compile('org.simpleframework:simple-xml:2.7.1') {
-        exclude module: 'xpp3'
-        exclude group: 'stax'
-    }
+    // Retrofit
+    compile 'com.squareup.retrofit2:retrofit:2.3.0'
+    compile 'com.github.faruktoptas:RetrofitRssConverterFactory:0.0.2'
 
     // LeakCanary
-    debugCompile 'com.squareup.leakcanary:leakcanary-android:1.5'
-    releaseCompile 'com.squareup.leakcanary:leakcanary-android-no-op:1.5'
-    testCompile 'com.squareup.leakcanary:leakcanary-android-no-op:1.5'
+    debugCompile 'com.squareup.leakcanary:leakcanary-android:1.5.4'
+    releaseCompile 'com.squareup.leakcanary:leakcanary-android-no-op:1.5.4'
+    testCompile 'com.squareup.leakcanary:leakcanary-android-no-op:1.5.4'
 }
 
 if (new File('signing.gradle').exists()) {
