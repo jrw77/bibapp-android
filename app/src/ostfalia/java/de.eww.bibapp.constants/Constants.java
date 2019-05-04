@@ -110,11 +110,11 @@ public final class Constants
     {
         if ( isLocal == true )
         {
-            return "http://daia.gbv.de/isil/" + Constants.DAIA_BIB_CODES[localCatalogIndex] + "?id=ppn:" + ppn + "&format=xml";
+            return "http://daia.gbv.de/isil/" + Constants.DAIA_BIB_CODES[localCatalogIndex] + "?id=ppn:" + ppn + "&format=json";
         }
         else
         {
-            return "http://daia.gbv.de/?id=gvk:ppn:" + ppn + "&format=xml";
+            return "http://daia.gbv.de/?id=gvk:ppn:" + ppn + "&format=json";
         }
     }
 
@@ -161,7 +161,7 @@ public final class Constants
     /**
      * DBS Counting (called on every search request)
      */
-    public static String DBS_COUNTING_URL = null; // "http://dbspixel.hbz-nrw.de/count?id=EM916&page=2";
+    public static String DBS_COUNTING_URL = ""; // "http://dbspixel.hbz-nrw.de/count?id=EM916&page=2";
     // TODO Ostfalia??
 
     /**

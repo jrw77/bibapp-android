@@ -47,7 +47,7 @@ public class SettingsFragment extends PreferenceFragment implements SharedPrefer
 
         // Check if we need to present the dbs privacy checkbox preference
         // to the user, which is only the case, if there is an url pre-configured
-        if (Constants.DBS_COUNTING_URL.isEmpty()) {
+        if (Constants.DBS_COUNTING_URL == null || Constants.DBS_COUNTING_URL.isEmpty()) {
             getPreferenceScreen().removePreference(findPreference(PrefUtils.PREF_DATA_PRIVACY));
         }
     }

@@ -69,7 +69,8 @@ public class DaiaLoader extends AbstractLoader<DaiaItem>
 		ArrayList<DaiaItem> response = new ArrayList<DaiaItem>();
 
 		int localCatalogIndex = PrefUtils.getLocalCatalogIndex(mContext);
-		URLConnectionHelper urlConnectionHelper = new URLConnectionHelper(Constants.getDaiaUrl(this.ppn, this.fromLocalSearch, localCatalogIndex), mContext);
+		URLConnectionHelper urlConnectionHelper = new URLConnectionHelper(
+				Constants.getDaiaUrl(this.ppn, this.fromLocalSearch, localCatalogIndex), mContext);
 
 		try
 		{
