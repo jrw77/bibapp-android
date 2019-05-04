@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools" tools:ignore="MissingTranslation">
+
+    <!-- general -->
+    <string name="app_name">BibApp Ostfalia</string>
+    
+    <!-- contact -->
+    <string name="contact_text">
+        <![CDATA[
+        <b>Kontakt</b><br/>
+        Gesamtleitung der Bibliothek, Judith Rüdiger<br/>
+        Telefon: +49 05331 - 939 18010<br/>
+        E-Mail: judith.ruediger@ostfalia.de<br/>
+        <br/>
+        <b>Wolfenb&uuml;ttel</b><br/>
+        Tel.: +49 05331 - 939 18100<br/>
+        E-Mail: information-wf@ostfalia.de<br/>
+        <br/>
+        <b>Wolfsburg</b><br/>
+        Tel.: +49 05331 - 939 18300<br/>
+        E-Mail: information-wf@ostfalia.de<br/>
+        <br/>
+        <b>Salzgitter</b><br/>
+        Tel.: +49 05331 - 939 18600<br/>
+        E-Mail: information-sz@ostfalia.de<br/>
+        <br/>
+        <b>Suderburg</b><br/>
+        Tel.: +49 05331 - 939 18950<br/>
+        E-Mail: information-sud@ostfalia.de<br/>
+        ]]>
+    </string>
+
+    <!-- impressum -->
+    <string name="impressum_text">
+        <![CDATA[
+        <b>Bibliothek der Ostfalia Hochschule für Angewandte Wissenschaften</b><br/>
+        Standorte: Wolfenbüttel, Wolfsburg, Salzgitter, Suderburg.</br>
+        Adresse: Am Exer 8 b; 38302 Wolfenbüttel </br>
+        Die Ostfalia Hochschule für angewandte Wissenschaften ist eine Körperschaft des öffentlichen Rechts.<br/>
+        Sie wird durch die Präsidentin, Frau Prof. Dr. Rosemarie Karger, gesetzlich vertreten.<br/>
+        Zuständige Aufsichtsbehörde: Niedersächsisches Ministerium für Bildung, Wissenschaft und Kultur.
+        ]]>
+    </string>
+</resources>

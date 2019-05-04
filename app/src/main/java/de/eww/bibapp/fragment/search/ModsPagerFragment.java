@@ -23,6 +23,7 @@ import de.eww.bibapp.adapter.ModsWatchlistPagerAdapter;
 import de.eww.bibapp.fragment.dialog.SwipeLoadingDialogFragment;
 import de.eww.bibapp.model.ModsItem;
 import de.eww.bibapp.model.source.ModsSource;
+import de.eww.bibapp.model.source.WatchlistSource;
 import de.eww.bibapp.tasks.SearchXmlLoader;
 
 /**

@@ -19,6 +19,7 @@ import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -48,6 +49,7 @@ import java.io.FileOutputStream;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 import butterknife.BindView;
@@ -600,7 +602,7 @@ public class ModsFragment extends Fragment implements
 
     private void openIndexAsset(String url) {
         Intent webIntent = new Intent(getActivity(), WebViewActivity.class);
-        webIntent.putExtra("url", url);
+        webIntent.putExtra("url", getIndexUrl());
 
         if (mIsWatchlistFragment) {
             webIntent.putExtra("source", "watchlist");
@@ -614,6 +616,26 @@ public class ModsFragment extends Fragment implements
         } else {
             startActivityForResult(webIntent, 99);
         }
+    }
+
+    private String getIndexUrl() {
+        String indexUrl = "";
+
+        if (!mModsItem.indexArray.isEmpty()) {
+            // determine the index to display
+            Iterator<String> it = mModsItem.indexArray.iterator();
+
+            while (it.hasNext()) {
+                // Try to find pdf version
+                indexUrl = it.next();
+
+                if (indexUrl.substring(indexUrl.length() - 3, indexUrl.length()).equals("pdf")) {
+                    break;
+                }
+            }
+        }
+
+        return indexUrl;
     }
 
     private void onClickInterlanding() {

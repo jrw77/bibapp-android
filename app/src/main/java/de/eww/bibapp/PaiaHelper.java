@@ -250,7 +250,7 @@ public class PaiaHelper implements LoginDialogFragment.LoginDialogListener
 		dialog.getDialog().cancel();
         this.reset();
 
-        ((BaseActivity) this.activity).selectItem(0);
+       //  ((BaseActivity) this.activity).selectItem(0);
 	}
 
     private void setScopes(String scopesString) {

@@ -33,82 +33,95 @@ android {
         exclude 'META-INF/notice.txt'
     }
 
+    flavorDimensions "hochschule"
+
     productFlavors {
         hi {
+            dimension "hochschule"
             applicationId "de.eww.bibapp.hi"
         }
         lg {
+            dimension "hochschule"
             applicationId "de.eww.bibapp.lg"
         }
         il {
+            dimension "hochschule"
             applicationId "de.eww.bibapp.il"
         }
         bls {
+            dimension "hochschule"
             applicationId "de.eww.bibapp.bls"
         }
         hawk {
+            dimension "hochschule"
             applicationId "de.eww.bibapp.hawk"
         }
         thulb {
+            dimension "hochschule"
             applicationId "de.eww.bibapp.thulb"
         }
         eahjena {
+            dimension "hochschule"
             applicationId "de.eww.bibapp.eahjena"
         }
         bathueringen {
+            dimension "hochschule"
             applicationId "de.eww.bibapp.bathueringen"
         }
         schmalkalden {
+            dimension "hochschule"
             applicationId "de.eww.bibapp.schmalkalden"
         }
         ubweimar {
+            dimension "hochschule"
             applicationId "de.eww.bibapp.ubweimar"
         }
         hfmweimar {
+            dimension "hochschule"
             applicationId "de.eww.bibapp.hfmweimar"
         }
         ndh {
+            dimension "hochschule"
             applicationId "de.eww.bibapp.ndh"
         }
         fhe {
+            dimension "hochschule"
             applicationId "de.eww.bibapp.fhe"
         }
         ufb {
+            dimension "hochschule"
             applicationId "de.eww.bibapp.ufb"
         }
         tubs {
+            dimension "hochschule"
             applicationId 'de.eww.bibapp.tubs'
         }
         aezb {
+            dimension "hochschule"
             applicationId 'de.eww.bibapp.aezb'
         }
         commerz {
+            dimension "hochschule"
             applicationId 'de.eww.bibapp.commerz'
         }
         iai {
+            dimension "hochschule"
             applicationId 'de.eww.bibapp.iai'
+        }
+        ostfalia {
+            dimension "hochschule"
+            applicationId 'de.eww.bibapp.ostfalia'
         }
     }
 }
 
 dependencies {
     compile fileTree(include: ['*.jar'], dir: 'libs')
-
     // Compat / Support
     compile 'com.android.support:appcompat-v7:25.3.1'
     compile 'com.android.support:recyclerview-v7:25.3.1'
     compile 'com.android.support:design:25.3.1'
     compile 'com.android.support:multidex:1.0.1'
-
-    // Retrofit
-    ////compile 'com.google.code.gson:gson:2.6.2'
-    //compile 'com.squareup.retrofit2:retrofit:2.1.0'
-    //compile 'com.squareup.retrofit2:converter-gson:2.1.0'
-    //compile 'com.squareup.retrofit2:adapter-rxjava:2.1.0'
-
-    // RxJava libraries
-    //compile 'io.reactivex:rxandroid:1.2.1'
-    //compile 'io.reactivex:rxjava:1.1.9'
 
     // Google Play services
     compile 'com.google.android.gms:play-services-maps:10.2.1'
@@ -119,6 +132,7 @@ dependencies {
     compile 'com.jakewharton:butterknife:8.8.1'
     annotationProcessor 'com.jakewharton:butterknife-compiler:8.8.1'
 
+    compile 'com.android.support:design:23.1.0'
     // Other
     compile 'com.octo.android.robospice:robospice:1.4.14'
     compile 'com.octo.android.robospice:robospice-spring-android:1.4.14'
@@ -126,6 +140,7 @@ dependencies {
         exclude module: 'xpp3'
         exclude group: 'stax'
     }
+
 
     // LeakCanary
     debugCompile 'com.squareup.leakcanary:leakcanary-android:1.5'
