@@ -334,7 +334,10 @@ public class SearchXmlParser
 				else if ( typeOfResource.equals("text") )
 				{
                     String issuance = originInfoMap.get("issuance");
-					if ( issuance != null && ( issuance.equals("serial") || issuance.equals("continuing") ) )
+					if (onlineUrl != null && !onlineUrl.isEmpty()){
+						mediaType = "ET";
+					}
+					else if ( issuance != null && ( issuance.equals("serial") || issuance.equals("continuing") ) )
 					{
 						mediaType = "T";
 					}

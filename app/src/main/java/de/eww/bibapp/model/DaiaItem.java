@@ -23,6 +23,7 @@ public class DaiaItem implements Comparable<DaiaItem>
 	public Double distance = null;
 	public String itemUriUrl;
 	public String storage = "";
+	public boolean isDigital = false;
 
 	public DaiaItem(JSONObject jsonObject, ModsItem modsItem) throws JSONException {
         if (jsonObject.has("id")) {
@@ -74,6 +75,7 @@ public class DaiaItem implements Comparable<DaiaItem>
                             }
                         }
                     }
+                    isDigital = availableObject.has("href");
                 }
             }
         }
